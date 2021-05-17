@@ -16,6 +16,7 @@ Arguments:
 * `filename::String`: _relative_ path to the file that contains the macro invocation.
 * `expr`: the actual content used to compare.
 * `by`: the equality test function. By default it is `isequal` if not explicitly stated.
+* `force_raw_txt`: Force reading the file as a raw string
 
 # Types
 
@@ -85,9 +86,9 @@ end
 
 function test_reference(
     filename::AbstractString, raw_actual;
-    by = nothing, render = nothing, kw...)
+    by = nothing, render = nothing, force_raw_txt = false, kw...)
 
-    test_reference(query_extended(filename), raw_actual, by, render; kw...)
+    test_reference(query_extended(filename, force_raw_txt), raw_actual, by, render; kw...)
 end
 
 function test_reference(
